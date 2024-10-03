@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.6"
 	kotlin("plugin.jpa") version "1.9.25"
 	kotlin("kapt") version "1.9.25"
+	id ("org.flywaydb.flyway") version "8.5.13"
 }
 
 group = "tableorder"
@@ -25,10 +26,15 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	// QueryDSL 설정
+
+	// QueryDSL
 	implementation ("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-	// Swagger 설정
+	// Swagger
 	implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+	// Flyway
+	implementation ("org.flywaydb:flyway-core")
+	implementation ("org.flywaydb:flyway-mysql")
+
 	kapt ("com.querydsl:querydsl-apt:5.0.0:jakarta")
 	kapt ("jakarta.annotation:jakarta.annotation-api")
 	kapt ("jakarta.persistence:jakarta.persistence-api")

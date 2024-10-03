@@ -8,7 +8,10 @@ spring:
     url: jdbc:mysql://localhost:3306/table-order
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: admin
+    password: root
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
   jpa:
     properties:
       hibernate:
