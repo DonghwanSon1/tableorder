@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query
 
 interface CategoryRepository: JpaRepository<Category, String>, CategoryCustomRepository {
 
-    fun findBySn(sn: Long): Category
+    fun findBySnIn(sn: List<Long>): List<Category>
 
     @Modifying
     @Query("  DELETE FROM Category c WHERE c.sn IN :snList")
