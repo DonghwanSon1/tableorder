@@ -1,17 +1,5 @@
 version: '3.8'
 services:
-  table-order-db:
-    image: mysql:latest
-    container_name: table-order-db  # 사용자 정의 이름
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: table-order
-      TZ: Asia/Seoul  # 한국 시간대 설정
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql  # 데이터 볼륨 추가
-
   table-order-service:
     restart: on-failure
     build: .
@@ -19,13 +7,7 @@ services:
     container_name: table-order-service  # 사용자 정의 이름
     ports:
       - "8080:8080"
-    depends_on:
-      - table-order-db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://table-order-db:3306/table-order
+      SPRING_DATASOURCE_URL: jdbc:mysql://toyproject.cv0qaskygtdb.ap-northeast-2.rds.amazonaws.com:3306/table-order
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-
-# 볼륨 정의
-volumes:
-  db_data:  # db_data라는 이름의 볼륨 정의
+      SPRING_DATASOURCE_PASSWORD: root1234!
