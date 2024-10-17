@@ -8,6 +8,12 @@ pipeline {
             }
         }
 
+        stage('Set Permissions') {
+            steps {
+                sh 'chmod +x gradlew' // gradlew에 실행 권한 추가
+            }
+        }
+
         stage('Clean and Build') {
             steps {
                 sh './gradlew clean build' // clean 후 build
@@ -17,7 +23,7 @@ pipeline {
 
         stage('Build and Run with Docker Compose') {
             steps {
-                dir('./tableorder') { // 디렉토리 이동
+                dir('./tableorder') {
                     sh 'docker-compose up --build -d'
                 }
             }
