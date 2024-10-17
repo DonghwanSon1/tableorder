@@ -21,11 +21,23 @@ pipeline {
 //            }
 //        }
 
+        stage('Docker Stop') {
+            steps {
+                sh 'docker stop table-order-service'
+            }
+        }
+
         stage('Build and Run with Docker Compose') {
             steps {
                 dir('./tableorder') {
                     sh 'docker-compose up --build -d'
                 }
+            }
+        }
+
+        stage('Image Remove') {
+            steps {
+                sh 'docker image prune -f'
             }
         }
     }
