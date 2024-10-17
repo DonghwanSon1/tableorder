@@ -8,18 +8,18 @@ pipeline {
             }
         }
 
-        stages {
-            stage('Clean and Build') {
-                steps {
-                    sh './gradlew clean build' // clean 후 build
-                    sh 'ls -l build/libs' // 빌드 결과 확인
-                }
+        stage('Clean and Build') {
+            steps {
+                sh './gradlew clean build' // clean 후 build
+                sh 'ls -l build/libs' // 빌드 결과 확인
             }
         }
 
         stage('Build and Run with Docker Compose') {
             steps {
-                sh 'docker-compose up --build -d'
+                dir('./tableorder') { // 디렉토리 이동
+                    sh 'docker-compose up --build -d'
+                }
             }
         }
     }
