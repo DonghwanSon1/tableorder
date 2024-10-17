@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('git clone') {
             steps {
-                git branch: 'main', credentialsId: 'gitHub_ssh', url: 'git@github.com:DonghwanSon1/tableorder.git'
+                git branch: 'main', credentialsId: 'gitHub_id', url: 'https://github.com/DonghwanSon1/tableorder.git'
             }
         }
 
