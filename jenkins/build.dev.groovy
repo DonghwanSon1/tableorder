@@ -21,9 +21,9 @@ pipeline {
 //            }
 //        }
 
-        stage('Docker Stop') {
+        stage('Docker Container Stop And Remove') {
             steps {
-                sh 'docker stop table-order-service'
+                sh 'docker rm -f table-order-service'
             }
         }
 
