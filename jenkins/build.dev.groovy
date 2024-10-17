@@ -10,9 +10,7 @@ pipeline {
 
         stage('Build and Run with Docker Compose') {
             steps {
-                dir('./tableorder') {
-                    sh 'docker-compose up --build -d'
-                }
+                sh 'docker-compose up --build -d'
             }
         }
     }
