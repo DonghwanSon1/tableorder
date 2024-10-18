@@ -21,10 +21,10 @@ class CategoryController(
 ) {
     @PostMapping
     @Operation(summary = "카테고리 다중 저장", description = "카테고리를 다중 저장합니다.")
-    fun saveCategory(@RequestBody categoryRq: List<CategoryRq>) {
+    fun saveCategory(@RequestBody categoryRqList: List<CategoryRq>) {
         // 비워있거나 Null로 들어올 시 Exception 발생
-        if (categoryRq.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
-        return categoryService.saveCategory(categoryRq)
+        if (categoryRqList.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
+        categoryService.saveCategory(categoryRqList)
     }
 
     @GetMapping
@@ -35,15 +35,15 @@ class CategoryController(
 
     @PatchMapping
     @Operation(summary = "카테고리 다중 수정", description = "카테고리를 다중 수정합니다.")
-    fun updateCategory(@RequestBody categoryRq: List<CategoryRq>) {
+    fun updateCategory(@RequestBody categoryRqList: List<CategoryRq>) {
         // 비워있거나 Null로 들어올 시 Exception 발생
-        if (categoryRq.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
-        return categoryService.saveCategory(categoryRq)
+        if (categoryRqList.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
+        categoryService.saveCategory(categoryRqList)
     }
 
     @PostMapping("/delete")
     @Operation(summary = "카테고리 다중 삭제", description = "다중 카테고리를 완전 삭제합니다.")
     fun deleteCategory(@RequestBody snList: List<Long>) {
-        return categoryService.deleteCategory(snList)
+        categoryService.deleteCategory(snList)
     }
 }

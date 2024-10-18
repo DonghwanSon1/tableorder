@@ -16,11 +16,11 @@ class CategoryService(
     }
 
     @Transactional
-    fun saveCategory(categoryRq: List<CategoryRq>) {
+    fun saveCategory(categoryRqList: List<CategoryRq>) {
         val entityList = ArrayList<Category>()
         val categoryMap = HashMap<Long, CategoryRq>()
 
-        categoryRq.forEach { rq ->
+        categoryRqList.forEach { rq ->
             // 만약 카테고리 sn이 있다면,
             if (rq.sn != null) {
                 // 수정이므로 한번에 조회 할 수 있도록 snList를 따로 빼고, Map으로 변경될 내용들을 저장한다.
