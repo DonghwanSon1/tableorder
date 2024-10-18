@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://dh-project.mooo.com:3306/table-order
+    url: jdbc:mysql://localhost:3306/table-order
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
