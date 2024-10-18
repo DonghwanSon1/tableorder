@@ -14,13 +14,6 @@ pipeline {
             }
         }
 
-        stage('Clean and Build') {
-            steps {
-                bat './gradlew clean build' // clean 후 build
-//                bat 'ls -l build/libs' // 빌드 결과 확인
-            }
-        }
-
         stage('Build and Run with Docker Compose') {
             steps {
                 dir('./tableorder') {
