@@ -14,6 +14,12 @@ pipeline {
             }
         }
 
+        stage('Clean and Build') {
+            steps {
+                bat './gradlew clean build' // clean 후 build
+            }
+        }
+
         stage('Build and Run with Docker Compose') {
             steps {
                 dir('./tableorder') {
