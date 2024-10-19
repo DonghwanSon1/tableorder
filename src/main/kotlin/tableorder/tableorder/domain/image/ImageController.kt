@@ -1,5 +1,6 @@
 package tableorder.tableorder.domain.image
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
@@ -25,6 +26,7 @@ class ImageController(
 ) {
 
     @PostMapping("/upload")
+    @Operation(summary = "이미지 업로드", description = "이미지를 업로드 한다.")
     fun uploadImage(@RequestParam("file") file: MultipartFile): String {
         if (file.isEmpty) throw CommonException(CommonExceptionCode.IMAGE_BAD_REQUEST)
         val uploadPath = Paths.get(uploadDir)
@@ -41,6 +43,7 @@ class ImageController(
     }
 
     @GetMapping("/{imageName}")
+    @Operation(summary = "이미지 조회", description = "이미지를 조회 한다.")
     fun getImage(@PathVariable imageName: String, response: HttpServletResponse) {
         val imageFile = File(uploadDir, imageName)
 
@@ -55,6 +58,7 @@ class ImageController(
     }
 
     @DeleteMapping("/{imageName}")
+    @Operation(summary = "이미지 삭제", description = "이미지를 삭제 한다.")
     fun deleteImage(@PathVariable imageName: String) {
         val path: Path = Paths.get("$uploadDir/$imageName")
 
