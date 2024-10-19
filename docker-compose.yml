@@ -18,4 +18,4 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
     volumes:
-      - C:/images:/opt/app/images # DDNS 서버의 노트북 이미지 저장소 지정 (도커 통신을 위한)
+      - C:/images:/images # DDNS 서버의 노트북 이미지 저장소 지정 (도커 통신을 위한)
