@@ -11,3 +11,5 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://dh-project.mooo.com:3306/table-order
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    volumes:
+      - /c/images:/app/images # DDNS 서버의 노트북 이미지 저장소 지정 (도커 통신을 위한)
