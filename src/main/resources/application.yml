@@ -24,5 +24,5 @@ logging:
 
 # 로컬 테스트 시 dir, imageUrl을 로컬로 변경해야함. 현재 DDNS의 노트북에 대한 정의임.
 file:
-  dir: C:\images                                              #/Users/sondonghwan/Desktop/images
+  dir: C:\images  #/Users/sondonghwan/Desktop/images
   imageUrl: http://dh-project.mooo.com:8081/table-order/image #http://localhost:8081/table-order/image
