@@ -19,6 +19,8 @@ class MenuCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : Menu
                                 MenuDetailRs::class.java,
                                 menu.sn,
                                 menu.name,
+                                menu.description,
+                                menu.price,
                                 menu.imageUrl,
                                 menu.createdAt,
                                 menu.updatedAt

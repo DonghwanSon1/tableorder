@@ -20,6 +20,12 @@ data class Menu(
     @Column(name = "name")
     val name: String? = null,
 
+    @Column(name = "description")
+    val description: String? = null,
+
+    @Column(name = "price")
+    val price: Long? = null,
+
     @Column(name = "order")
     val order: Long? = null,
 
@@ -38,6 +44,8 @@ data class Menu(
             return Menu(
                 categorySn = categorySn,
                 name = menuDetailRq.name,
+                description = menuDetailRq.description,
+                price = menuDetailRq.price,
                 order = menuDetailRq.order,
                 imageUrl = menuDetailRq.imageUrl,
                 createdAt = LocalDateTime.now(),
@@ -51,6 +59,8 @@ data class Menu(
             sn = this.sn,
             categorySn = this.categorySn,
             name = menuDetailRq.name ?: this.name,
+            description = menuDetailRq.description ?: this.description,
+            price = menuDetailRq.price ?: this.price,
             order = menuDetailRq.order ?: this.order,
             imageUrl = menuDetailRq.imageUrl ?: this.imageUrl,
             createdAt = this.createdAt ?: LocalDateTime.now(),

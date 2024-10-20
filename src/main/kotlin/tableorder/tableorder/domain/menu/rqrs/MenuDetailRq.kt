@@ -11,6 +11,12 @@ data class MenuDetailRq(
     @Schema(description = "메뉴 이름")
     val name: String? = null,
 
+    @Schema(description = "메뉴 설명")
+    val description: String? = null,
+
+    @Schema(description = "메뉴 가격")
+    val price: Long? = null,
+
     @Schema(description = "메뉴 순서")
     val order: Long? = null,
 

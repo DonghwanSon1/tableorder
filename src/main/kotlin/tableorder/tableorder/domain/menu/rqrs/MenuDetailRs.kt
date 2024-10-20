@@ -11,6 +11,12 @@ data class MenuDetailRs(
     @Schema(description = "메뉴 이름")
     val name: String? = null,
 
+    @Schema(description = "메뉴 설명")
+    val description: String? = null,
+
+    @Schema(description = "메뉴 가격")
+    val price: Long? = null,
+
     @Schema(description = "메뉴 이미지")
     val imageUrl: String? = null,
 
