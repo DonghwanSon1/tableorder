@@ -7,15 +7,9 @@ import java.time.LocalDateTime
 
 data class MenuRq(
 
-    @Schema(description = "메뉴 sn")
-    val sn: Long? = null,
+    @Schema(description = "삭제할 메뉴 snList")
+    val deleteSnList: List<Long>? = null,
 
-    @Schema(description = "메뉴 이름")
-    val name: String? = null,
-
-    @Schema(description = "메뉴 순서")
-    val order: Long? = null,
-
-    @Schema(description = "메뉴 이미지")
-    val imageUrl: String? = null,
+    @Schema(description = "메뉴 Detail")
+    val menuDetailList: List<MenuDetailRq>? = null
 )

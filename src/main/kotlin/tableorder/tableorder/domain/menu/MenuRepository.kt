@@ -9,5 +9,7 @@ interface MenuRepository: JpaRepository<Menu, String>, MenuCustomRepository {
 
     fun findBySnIn(sn: List<Long>): List<Menu>
 
+    fun findByCategorySn(categorySn: Long): List<Menu>?
+
 
 }

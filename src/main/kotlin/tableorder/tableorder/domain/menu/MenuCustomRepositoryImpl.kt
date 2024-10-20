@@ -12,7 +12,7 @@ class MenuCustomRepositoryImpl(private val queryFactory: JPAQueryFactory) : Menu
     private val menu: QMenu = QMenu.menu
 
 
-    override fun findByCategorySn(categorySn: Long): List<MenuDetailRs>? {
+    override fun searchByCategorySn(categorySn: Long): List<MenuDetailRs>? {
         return queryFactory
                 .select(
                         Projections.fields(

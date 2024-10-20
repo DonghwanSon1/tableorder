@@ -2,6 +2,7 @@ package tableorder.tableorder.domain.menu
 
 import jakarta.persistence.*
 import tableorder.tableorder.domain.category.rqrs.CategoryRq
+import tableorder.tableorder.domain.menu.rqrs.MenuDetailRq
 import tableorder.tableorder.domain.menu.rqrs.MenuRq
 import java.time.LocalDateTime
 
@@ -33,25 +34,25 @@ data class Menu(
 ) {
 
     companion object {
-        fun createMenu(menuRq: MenuRq, categorySn: Long): Menu {
+        fun createMenu(menuDetailRq: MenuDetailRq, categorySn: Long): Menu {
             return Menu(
                 categorySn = categorySn,
-                name = menuRq.name,
-                order = menuRq.order,
-                imageUrl = menuRq.imageUrl,
+                name = menuDetailRq.name,
+                order = menuDetailRq.order,
+                imageUrl = menuDetailRq.imageUrl,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now()
             )
         }
     }
 
-    fun updateMenu(menuRq: MenuRq): Menu {
+    fun updateMenu(menuDetailRq: MenuDetailRq): Menu {
         return Menu(
             sn = this.sn,
             categorySn = this.categorySn,
-            name = menuRq.name ?: this.name,
-            order = menuRq.order ?: this.order,
-            imageUrl = menuRq.imageUrl ?: this.imageUrl,
+            name = menuDetailRq.name ?: this.name,
+            order = menuDetailRq.order ?: this.order,
+            imageUrl = menuDetailRq.imageUrl ?: this.imageUrl,
             createdAt = this.createdAt ?: LocalDateTime.now(),
             updatedAt = LocalDateTime.now()
         )

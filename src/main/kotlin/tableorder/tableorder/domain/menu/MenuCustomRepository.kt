@@ -5,5 +5,5 @@ import tableorder.tableorder.domain.menu.rqrs.MenuDetailRs
 
 interface MenuCustomRepository {
 
-    fun findByCategorySn(categorySn: Long): List<MenuDetailRs>?
+    fun searchByCategorySn(categorySn: Long): List<MenuDetailRs>?
 }
