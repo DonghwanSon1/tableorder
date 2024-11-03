@@ -46,7 +46,7 @@ data class Menu(
                 name = menuDetailRq.name,
                 description = menuDetailRq.description,
                 price = menuDetailRq.price,
-                order = menuDetailRq.order,
+                order = menuDetailRq.order ?: 0,
                 imageUrl = menuDetailRq.imageUrl,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now()

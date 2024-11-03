@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import tableorder.tableorder.domain.category.rqrs.CategoryRq
 import tableorder.tableorder.domain.category.rqrs.CategoryRs
+import tableorder.tableorder.global.exception.CommonException
+import tableorder.tableorder.global.exception.CommonExceptionCode
 
 @Service
 @Transactional(readOnly = true)
@@ -27,6 +29,8 @@ class CategoryService(
                 categoryMap[rq.sn] = rq
             }
             else {
+                // 생성 시 이름이 없을 시 Exception 발생
+                if (rq.name.isNullOrEmpty()) throw CommonException(CommonExceptionCode.NO_CATEGORY_NAME)
                 // sn 없다면, 신규 저장이므로 생성 후 저장한다.
                 entityList.add(Category.createCategory(rq))
             }

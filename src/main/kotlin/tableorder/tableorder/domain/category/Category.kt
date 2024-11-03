@@ -29,7 +29,7 @@ data class Category(
         fun createCategory(categoryRq: CategoryRq): Category {
             return Category(
                 name = categoryRq.name,
-                order = categoryRq.order,
+                order = categoryRq.order ?: 0,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now()
             )

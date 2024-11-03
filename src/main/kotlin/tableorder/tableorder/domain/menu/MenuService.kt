@@ -42,6 +42,8 @@ class MenuService(
                 menuMap[menu.sn] = menu
             }
             else {
+                // 메뉴 가격를 주지 않으면 Exception 발생 (필수)
+                if (menu.price == null) throw CommonException(CommonExceptionCode.NO_MENU_PRICE)
                 // sn 없다면, 신규 저장이므로 생성 후 저장한다.
                 entityList.add(Menu.createMenu(menu, categorySn))
             }
