@@ -27,7 +27,10 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
-        type.descriptor.sql: trace
+        type:
+          descriptor:
+            sql:
+            type.descriptor.sql: TRACE
 
 
 # 로컬 테스트 시 dir, imageUrl을 로컬로 변경해야함. 현재는 dir은 도커의 디렉토리고, url은 DDNS이다.

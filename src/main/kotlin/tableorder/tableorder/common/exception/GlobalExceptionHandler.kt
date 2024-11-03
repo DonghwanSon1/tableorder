@@ -1,4 +1,4 @@
-package tableorder.tableorder.global.exception
+package tableorder.tableorder.common.exception
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice

@@ -1,4 +1,4 @@
-package tableorder.tableorder.global.exception
+package tableorder.tableorder.common.exception
 
 import org.springframework.http.HttpStatus
 
@@ -13,4 +13,6 @@ enum class CommonExceptionCode(
     IMAGE_BAD_REQUEST(HttpStatus.BAD_REQUEST, "이미지를 선택해주세요."),
     NO_IMAGE_EXISTS(HttpStatus.BAD_REQUEST, "해당 이미지가 존재하지 않습니다."),
     NO_MENU_PRICE(HttpStatus.BAD_REQUEST, "메뉴의 가격은 필수 입니다."),
+    DUPLICATE_ID(HttpStatus.BAD_REQUEST, "중복된 아이디가 있습니다."),
+
 }

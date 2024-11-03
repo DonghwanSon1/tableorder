@@ -5,15 +5,12 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import tableorder.tableorder.domain.category.Category
 import tableorder.tableorder.domain.category.CategoryRepository
-import tableorder.tableorder.domain.category.CategoryService
-import tableorder.tableorder.domain.category.rqrs.CategoryRq
-import tableorder.tableorder.domain.category.rqrs.CategoryRs
 import tableorder.tableorder.domain.menu.rqrs.MenuDetailRq
 import tableorder.tableorder.domain.menu.rqrs.MenuDetailRs
 import tableorder.tableorder.domain.menu.rqrs.MenuRq
 import tableorder.tableorder.domain.menu.rqrs.MenuRs
-import tableorder.tableorder.global.exception.CommonException
-import tableorder.tableorder.global.exception.CommonExceptionCode
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 
 @Service
 @Transactional(readOnly = true)

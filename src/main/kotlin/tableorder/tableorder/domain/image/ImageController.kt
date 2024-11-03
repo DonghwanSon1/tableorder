@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServletResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import tableorder.tableorder.global.exception.CommonException
-import tableorder.tableorder.global.exception.CommonExceptionCode
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path

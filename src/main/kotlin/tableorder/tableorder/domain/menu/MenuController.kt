@@ -1,15 +1,12 @@
 package tableorder.tableorder.domain.menu
 
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
-import tableorder.tableorder.domain.category.rqrs.CategoryRq
-import tableorder.tableorder.domain.category.rqrs.CategoryRs
 import tableorder.tableorder.domain.menu.rqrs.MenuRq
 import tableorder.tableorder.domain.menu.rqrs.MenuRs
-import tableorder.tableorder.global.exception.CommonException
-import tableorder.tableorder.global.exception.CommonExceptionCode
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 
 @RestController
 @RequestMapping("/menu")

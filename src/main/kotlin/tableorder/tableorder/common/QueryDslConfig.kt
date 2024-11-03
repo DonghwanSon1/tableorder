@@ -1,4 +1,4 @@
-package tableorder.tableorder.global
+package tableorder.tableorder.common
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import jakarta.persistence.EntityManager

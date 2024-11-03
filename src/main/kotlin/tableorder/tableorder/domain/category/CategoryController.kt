@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import tableorder.tableorder.domain.category.rqrs.CategoryRq
 import tableorder.tableorder.domain.category.rqrs.CategoryRs
-import tableorder.tableorder.global.exception.CommonException
-import tableorder.tableorder.global.exception.CommonExceptionCode
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 
 @RestController
 @RequestMapping("/category")
