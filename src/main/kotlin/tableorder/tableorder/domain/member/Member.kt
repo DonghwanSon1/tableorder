@@ -5,10 +5,9 @@ import tableorder.tableorder.domain.member.rqrs.MemberRq
 import java.time.LocalDate
 
 @Entity
-@Table(name = "admin-member")
+@Table(name = "member")
 data class Member(
 
-    // TODO 정규식 판별 넣기
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sn")
@@ -36,13 +35,13 @@ data class Member(
 ) {
 
     companion object {
-        fun createMember(memberRq: MemberRq): Member {
+        fun createMember(memberRq: MemberRq, role: Role): Member {
             return Member(
                 id = memberRq.id,
                 password = memberRq.password,
                 name = memberRq.name,
                 birthDate = memberRq.birthDate,
-//                role = memberRq.role,
+                role = role,
                 email = memberRq.email
             )
         }

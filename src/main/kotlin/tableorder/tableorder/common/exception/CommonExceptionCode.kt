@@ -14,5 +14,6 @@ enum class CommonExceptionCode(
     NO_IMAGE_EXISTS(HttpStatus.BAD_REQUEST, "해당 이미지가 존재하지 않습니다."),
     NO_MENU_PRICE(HttpStatus.BAD_REQUEST, "메뉴의 가격은 필수 입니다."),
     DUPLICATE_ID(HttpStatus.BAD_REQUEST, "중복된 아이디가 있습니다."),
+    NO_ROLE(HttpStatus.BAD_REQUEST, "해당 역할은 존재하지 않습니다."),
 
 }

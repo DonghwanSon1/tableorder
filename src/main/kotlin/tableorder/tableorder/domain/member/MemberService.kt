@@ -19,22 +19,22 @@ class MemberService(
     private val memberRepository: MemberRepository,
 ) {
 
-    // TODO 해당 회원가입 테스트, JWT/Security 만들기, 테블릿 회원가입도 만들기,
+    // TODO JWT/Security 만들기, 테블릿 회원가입도 만들기,
     @Transactional
-    fun signUp(rq: MemberRq, role: String): String {
+    fun signUp(rq: MemberRq, role: Role): String {
         // ID 중복 검사
-        var member: Member? = findShopAdminId(rq.id!!, role)
+        var member: Member? = findId(rq.id!!, role)
         if (member != null) {
             throw CommonException(CommonExceptionCode.DUPLICATE_ID)
         }
 
-        member = Member.createMember(rq)
+        member = Member.createMember(rq, role)
         memberRepository.save(member)
-        return if (role.equals(Role.SHOP_ADMIN)) { "관리자 회원가입이 완료되었습니다." }
+        return if (role == Role.SHOP) { "관리자 회원가입이 완료되었습니다." }
         else { "사용자 회원가입이 완료되었습니다." }
     }
 
-    fun findShopAdminId(id: String, role: String): Member? {
+    fun findId(id: String, role: Role): Member? {
         return memberRepository.findByIdAndRole(id, role)
     }
 

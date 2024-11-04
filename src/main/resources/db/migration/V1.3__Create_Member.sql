@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS member (
     birth_date DATE,                                    -- 생년월일
     role VARCHAR(20),                                   -- 역할
     email VARCHAR(255) NOT NULL,                        -- 이메일
-    UNIQUE KEY unique_id (id),                          -- id 컬럼에 대한 유니크 인덱스
+    UNIQUE KEY unique_id (id, role),                    -- id, role 컬럼에 대한 유니크 인덱스
     INDEX idx_role (role)                               -- role 컬럼에 대한 인덱스 추가
 );

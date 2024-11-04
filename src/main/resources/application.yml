@@ -32,6 +32,10 @@ logging:
             sql:
             type.descriptor.sql: TRACE
 
+jwt:
+  secret: fM6xV5jHs2Q3tLp8Dz4RkYz1Wq9sZtE7Bc8NnQj3FgWkTsHqJvR
+  access-token-expire-time: 300
+  refresh-token-expire-time: 7200
 
 # 로컬 테스트 시 dir, imageUrl을 로컬로 변경해야함. 현재는 dir은 도커의 디렉토리고, url은 DDNS이다.
 file:

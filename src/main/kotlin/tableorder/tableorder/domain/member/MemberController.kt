@@ -2,6 +2,7 @@ package tableorder.tableorder.domain.member
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import tableorder.tableorder.common.BaseResponse
 import tableorder.tableorder.domain.menu.rqrs.MenuRq
@@ -17,18 +18,26 @@ class MemberController(
     private val memberService: MemberService
 ) {
 
-    @GetMapping("/shop-admin/check-id/{id}")
-    @Operation(summary = "가게 관리자 ID 조회", description = "중복체크를 위한 가게 관리자 ID 조회합니다.")
-    fun findShopAdminId(@PathVariable id: String): BaseResponse<Unit>{
-        val member: Member? = memberService.findShopAdminId(id, Role.SHOP_ADMIN.name)
+    @GetMapping("/check-id")
+    @Operation(summary = "중복체크를 위한 ID 조회", description = "중복체크를 위한 ID 조회합니다.")
+    fun findId(@RequestParam id: String, @RequestParam role: String): BaseResponse<Unit> {
+        val roleEnum = Role.values().find { it.name == role.uppercase() } ?: throw CommonException(CommonExceptionCode.NO_ROLE)
+        val member: Member? = memberService.findId(id, roleEnum)
         return if (member != null) { BaseResponse(message = "중복된 아이디가 있습니다.") }
         else { BaseResponse(message = "사용 가능한 아이디 입니다.") }
     }
 
-    @PostMapping("/shop-admin/sign")
+    @PostMapping("/shop/sign")
     @Operation(summary = "가게 관리자 회원가입", description = "가게의 관리자 회원가입 합니다.")
-    fun signUpShopAdmin(@RequestBody rq: MemberRq): BaseResponse<Unit>{
-        val message: String = memberService.signUp(rq, Role.SHOP_ADMIN.name)
+    fun signUpShop(@RequestBody @Valid rq: MemberRq): BaseResponse<Unit> {
+        val message: String = memberService.signUp(rq, Role.SHOP)
+        return BaseResponse(message = message)
+    }
+
+    @PostMapping("/user/sign")
+    @Operation(summary = "일반 사용자 회원가입", description = "일반 사용자 회원가입 합니다.")
+    fun signUpUser(@RequestBody @Valid rq: MemberRq): BaseResponse<Unit> {
+        val message: String = memberService.signUp(rq, Role.USER)
         return BaseResponse(message = message)
     }
 
