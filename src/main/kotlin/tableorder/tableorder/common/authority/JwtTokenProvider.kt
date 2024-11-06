@@ -14,12 +14,18 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
 
-// TODO 여기서부터 다시 하기
-const val EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 12
+//const val EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 12
 @Component
 class JwtTokenProvider {
     @Value("\${jwt.secret}")
     lateinit var secretKey: String
+
+    @Value("\${jwt.access-token-expire-time}")
+    private var accessTokenExpireTime: Long = 0
+
+    @Value("\${jwt.refresh-token-expire-time}")
+    private var refreshTokenExpireTime: Long = 0
+
     private val key by lazy {
         Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey))
     }
@@ -32,7 +38,7 @@ class JwtTokenProvider {
                 .authorities
                 .joinToString(",", transform = GrantedAuthority::getAuthority)
         val now = Date()
-        val accessExpiration = Date(now.time + EXPIRATION_MILLISECONDS)
+        val accessExpiration = Date(now.time + accessTokenExpireTime)
         // Access Token
         val accessToken = Jwts.builder()
                 .setSubject(authentication.name)
@@ -78,6 +84,7 @@ class JwtTokenProvider {
         }
         return false
     }
+
     private fun getClaims(token: String): Claims =
             Jwts.parserBuilder()
                     .setSigningKey(key)

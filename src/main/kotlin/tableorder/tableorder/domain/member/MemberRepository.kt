@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.Query
 interface MemberRepository: JpaRepository<Member, Long>, MemberCustomRepository {
 
     fun findByIdAndRole(id: String, role: Role): Member?
+    fun findById(id: String): Member?
+
 }

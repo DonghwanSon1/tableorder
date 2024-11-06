@@ -5,10 +5,12 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 import tableorder.tableorder.common.BaseResponse
+import tableorder.tableorder.common.authority.TokenInfo
 import tableorder.tableorder.domain.menu.rqrs.MenuRq
 import tableorder.tableorder.domain.menu.rqrs.MenuRs
 import tableorder.tableorder.common.exception.CommonException
 import tableorder.tableorder.common.exception.CommonExceptionCode
+import tableorder.tableorder.domain.member.rqrs.LoginRq
 import tableorder.tableorder.domain.member.rqrs.MemberRq
 
 @RestController
@@ -40,5 +42,12 @@ class MemberController(
         val message: String = memberService.signUp(rq, Role.USER)
         return BaseResponse(message = message)
     }
+
+    @PostMapping("/login")
+    @Operation(summary = "로그인", description = "로그인을 합니다.")
+    fun login(@RequestBody @Valid loginRq: LoginRq): TokenInfo {
+        return memberService.login(loginRq)
+    }
+
 
 }
