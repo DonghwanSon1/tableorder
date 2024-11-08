@@ -42,12 +42,18 @@ class MemberController(
         val message: String = memberService.signUp(rq, Role.USER)
         return BaseResponse(message = message)
     }
-
-    @PostMapping("/login")
-    @Operation(summary = "로그인", description = "로그인을 합니다.")
-    fun login(@RequestBody @Valid loginRq: LoginRq): TokenInfo {
-        return memberService.login(loginRq)
+    @PostMapping("/shop/login")
+    @Operation(summary = "가게의 관리자 로그인", description = "가게의 관리자 로그인을 합니다.")
+    fun shopLogin(@RequestBody @Valid loginRq: LoginRq): TokenInfo {
+        return memberService.login(loginRq, Role.SHOP)
     }
+
+    @PostMapping("/user/login")
+    @Operation(summary = "일반 사용자 로그인", description = "일반 사용자 로그인을 합니다.")
+    fun userLogin(@RequestBody @Valid loginRq: LoginRq): TokenInfo {
+        return memberService.login(loginRq, Role.USER)
+    }
+
 
 
 }

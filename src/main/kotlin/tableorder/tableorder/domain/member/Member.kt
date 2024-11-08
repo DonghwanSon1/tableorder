@@ -35,10 +35,10 @@ data class Member(
 ) {
 
     companion object {
-        fun createMember(memberRq: MemberRq, role: Role): Member {
+        fun createMember(memberRq: MemberRq, encryptedPassword: String, role: Role): Member {
             return Member(
                 id = memberRq.id,
-                password = memberRq.password,
+                password = encryptedPassword,
                 name = memberRq.name,
                 birthDate = memberRq.birthDate,
                 role = role,

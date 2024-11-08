@@ -7,24 +7,26 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.security.core.userdetails.UsernameNotFoundException
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 import tableorder.tableorder.domain.member.Member
 import tableorder.tableorder.domain.member.MemberRepository
+import tableorder.tableorder.domain.member.Role
 
 @Service
 class CustomUserDetailsService(
-        private val memberRepository: MemberRepository,
-        private val passwordEncoder: PasswordEncoder
-) : UserDetailsService {
+        private val memberRepository: MemberRepository
+) {
 
-    override fun loadUserByUsername(username: String): UserDetails =
-            memberRepository.findById(username)
-                    ?.let { createUserDetails(it) }
-                    ?: throw UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다.")
+    // 기존의 loadUserByUsername을 사용하지 않고 직접 구현하는 메서드
+    fun loadUserByUsernameAndRole(username: String, role: Role): UserDetails {
+        val member = memberRepository.findByIdAndRole(username, role)
+                ?: throw CommonException(CommonExceptionCode.USER_NAME_NOT_FOUND)
 
-    private fun createUserDetails(member: Member): UserDetails =
-            User(
-                    member.id,
-                    passwordEncoder.encode(member.password),
-                    listOf(SimpleGrantedAuthority("ROLE_${member.role ?: "USER"}"))
-            )
+        return User(
+                member.id,
+                member.password,
+                listOf(SimpleGrantedAuthority("ROLE_${member.role ?: "USER"}"))
+        )
+    }
 }
