@@ -49,7 +49,6 @@ class MemberService(
         return memberRepository.findByIdAndRole(id, role)
     }
 
-    // TODO Role도 같이 전달하기, 포스트맨 토큰 저장하도록 설정하기
     fun login(loginRq: LoginRq, role: Role): TokenInfo {
         val authenticationToken = UsernamePasswordRoleAuthenticationToken(
                 loginRq.id, loginRq.password, role)

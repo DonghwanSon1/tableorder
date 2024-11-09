@@ -26,7 +26,7 @@ class CustomUserDetailsService(
         return User(
                 member.id,
                 member.password,
-                listOf(SimpleGrantedAuthority("ROLE_${member.role ?: "USER"}"))
+                listOf(SimpleGrantedAuthority("${member.role ?: "USER"}"))
         )
     }
 }

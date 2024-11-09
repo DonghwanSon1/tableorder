@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 import java.util.*
 
-//const val EXPIRATION_MILLISECONDS: Long = 1000 * 60 * 60 * 12
 @Component
 class JwtTokenProvider {
     @Value("\${jwt.secret}")
@@ -39,15 +38,19 @@ class JwtTokenProvider {
                 .joinToString(",", transform = GrantedAuthority::getAuthority)
         val now = Date()
         val accessExpiration = Date(now.time + accessTokenExpireTime)
+
+        val role = authentication.authorities
+            .map { it.authority }.firstOrNull() // 기본 값 설정
+
         // Access Token
         val accessToken = Jwts.builder()
-                .setSubject(authentication.name)
-                .claim("auth", authorities)
-                .setIssuedAt(now)
-                .setExpiration(accessExpiration)
-                .signWith(key, SignatureAlgorithm.HS256)
-                .compact()
-        return TokenInfo("Bearer", accessToken)
+            .setSubject(authentication.name)
+            .claim("auth", authorities)
+            .setIssuedAt(now)
+            .setExpiration(accessExpiration)
+            .signWith(key, SignatureAlgorithm.HS256)
+            .compact()
+        return TokenInfo("Bearer", accessToken, role)
     }
 
     /**

@@ -29,6 +29,7 @@ class SecurityConfig (
             }
             .authorizeHttpRequests {
                 it.requestMatchers("/member/**").anonymous()
+//                    .requestMatchers("/category/**").hasAuthority("USER")
                 it.anyRequest().authenticated()
             }
             .addFilterBefore(

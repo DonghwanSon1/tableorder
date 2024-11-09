@@ -7,6 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
+import tableorder.tableorder.common.exception.CommonException
+import tableorder.tableorder.common.exception.CommonExceptionCode
 
 @Component
 class CustomAuthenticationProvider(
@@ -22,9 +24,7 @@ class CustomAuthenticationProvider(
 
         val userDetails = customUserDetailsService.loadUserByUsernameAndRole(username, role)
 
-        if (!passwordEncoder.matches(password, userDetails.password)) {
-            throw BadCredentialsException("잘못된 비밀번호입니다.")
-        }
+        if (!passwordEncoder.matches(password, userDetails.password)) throw CommonException(CommonExceptionCode.INVALID_PASSWORD)
 
         return UsernamePasswordAuthenticationToken(userDetails, password, userDetails.authorities)
     }
