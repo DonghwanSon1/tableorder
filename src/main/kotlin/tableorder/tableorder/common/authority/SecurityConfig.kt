@@ -28,8 +28,9 @@ class SecurityConfig (
                 it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             }
             .authorizeHttpRequests {
-                it.requestMatchers("/member/**").anonymous()
-//                    .requestMatchers("/category/**").hasAuthority("USER")
+                it.requestMatchers("/member/**", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**",
+                                    "/category/**", "/menu/**").anonymous()
+                    .requestMatchers("/shop-admin/**").hasAuthority("SHOP")
                 it.anyRequest().authenticated()
             }
             .addFilterBefore(

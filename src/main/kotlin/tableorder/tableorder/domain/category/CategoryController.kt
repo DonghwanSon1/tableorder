@@ -19,31 +19,10 @@ import tableorder.tableorder.common.exception.CommonExceptionCode
 class CategoryController(
     private val categoryService: CategoryService
 ) {
-    @PostMapping
-    @Operation(summary = "카테고리 다중 저장", description = "카테고리를 다중 저장합니다.")
-    fun saveCategory(@RequestBody categoryRqList: List<CategoryRq>) {
-        // 비워있거나 Null로 들어올 시 Exception 발생
-        if (categoryRqList.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
-        categoryService.saveCategory(categoryRqList)
-    }
-
     @GetMapping
     @Operation(summary = "카테고리 전체 조회", description = "전체 카테고리를 전체 조회합니다.")
     fun searchCategory(): List<CategoryRs> {
         return categoryService.search()
     }
 
-    @PatchMapping
-    @Operation(summary = "카테고리 다중 수정", description = "카테고리를 다중 수정합니다.")
-    fun updateCategory(@RequestBody categoryRqList: List<CategoryRq>) {
-        // 비워있거나 Null로 들어올 시 Exception 발생
-        if (categoryRqList.isNullOrEmpty()) throw CommonException(CommonExceptionCode.BAD_REQUEST)
-        categoryService.saveCategory(categoryRqList)
-    }
-
-    @PostMapping("/delete")
-    @Operation(summary = "카테고리 다중 삭제", description = "다중 카테고리를 완전 삭제합니다.")
-    fun deleteCategory(@RequestBody snList: List<Long>) {
-        categoryService.deleteCategory(snList)
-    }
 }
